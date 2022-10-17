@@ -13,16 +13,17 @@
 ActiveRecord::Schema.define(version: 2022_10_17_061620) do
 
   create_table "admins", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
+    t.string "email", null: false
+    t.string "password", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "item_id"
-    t.integer "piece"
+    t.integer "customer_id", null: false
+    t.integer "item_id", null: false
+    t.integer "piece", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -33,15 +34,15 @@ ActiveRecord::Schema.define(version: 2022_10_17_061620) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "last_name"
-    t.string "first_name"
-    t.string "kana_last_name"
-    t.string "kana_first_name"
-    t.string "address"
-    t.string "zipcode"
-    t.string "phone_number"
-    t.string "password"
-    t.boolean "delete_flag"
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "kana_last_name", null: false
+    t.string "kana_first_name", null: false
+    t.string "address", null: false
+    t.string "zipcode", null: false
+    t.string "phone_number", null: false
+    t.string "password", null: false
+    t.boolean "delete_flag", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -49,41 +50,49 @@ ActiveRecord::Schema.define(version: 2022_10_17_061620) do
   end
 
   create_table "destinations", force: :cascade do |t|
-    t.integer "customer_id"
-    t.string "zipcode"
-    t.string "addresss"
-    t.string "delivery_name"
+    t.integer "customer_id", null: false
+    t.string "zipcode", null: false
+    t.string "addresss", null: false
+    t.string "delivery_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "genres", force: :cascade do |t|
-    t.string "type"
+    t.string "type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.string "item_name", null: false
+    t.text "caption", null: false
+    t.integer "price", null: false
+    t.boolean "sales_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "orderdetails", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "item_id"
-    t.integer "price_at_purchase"
-    t.integer "piece"
-    t.integer "production_status"
+    t.integer "order_id", null: false
+    t.integer "item_id", null: false
+    t.integer "price_at_purchase", null: false
+    t.integer "piece", null: false
+    t.integer "item_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "product_id"
-    t.integer "price_at_purchase"
-    t.integer "piece"
-    t.integer "production_status"
+    t.integer "customer_id", null: false
+    t.string "delivery_zip", null: false
+    t.string "delivery_address", null: false
+    t.string "delivery_name", null: false
+    t.integer "delivery_fee", null: false
+    t.integer "total_price", null: false
+    t.integer "pay_type", default: 0, null: false
+    t.integer "order_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
