@@ -41,7 +41,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.string :phone_number
       t.string :email
       t.string :password
-      
+
       t.timestamps null: false
     end
 
