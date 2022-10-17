@@ -10,31 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_17_022540) do
-
-  create_table "destinations", force: :cascade do |t|
-    t.integer "customer_id"
-    t.string "zipcode"
-    t.string "addresss"
-    t.string "delivery_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.integer "order_id"
-    t.integer "product_id"
-    t.integer "price_at_purchase"
-    t.integer "piece"
-    t.integer "production_status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -48,4 +23,3 @@ ActiveRecord::Schema.define(version: 2022_10_17_022540) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-end
