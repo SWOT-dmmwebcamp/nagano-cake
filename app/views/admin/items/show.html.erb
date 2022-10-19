@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <h4>商品詳細</h4>
+    <% @item.each do |item| %>
+      <div class="col">
+        <span>
+          <%= image_tag item.image, size: "200x200" %>
+        </span>
+      </div>
+      <div class="col">
+        <div class="detail">
+          <span>商品名</span>
+          <%= item.item_name %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

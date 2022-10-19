@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
-    
-  
-    namespace :admin do
-    resources :genres, only: [:index, :edit, :update, :create]
-  end
-# 管理者用
-# URL /admin/sign_in ...
-    devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-      sessions: "admin/sessions"
-    }
+  devise_for :customers
+  devise_for :users
 
-#HTTPメソッド 'URL' => 'コントローラ#アクション'
+  namespace :admin do
+    resources :items
+
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,30 @@
+<div class="container">
+  <h4>商品一覧</h4>
+  <div class="text-right">
+    <%= button_to "新規登録", new_admin_item_path, method: :get, class:"btn btn-light rounded-circle p-2" %>
+  </div>
+  <div class="row">
+    <table class='table table-hover table-inverse'>
+      <% @items.each do |item| %>
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜き価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td><%= item.item_name %></td>
+          <td><%= item.price %></td>
+          <td><%#= item.janre_id %></td>
+          <td><%= item.sales_status %></td>
+        </tr>
+      </tbody>
+
+      <% end %>
+  </div>
+</div>
