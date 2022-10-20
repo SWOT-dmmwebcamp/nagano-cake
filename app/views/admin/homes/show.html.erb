@@ -1,0 +1,26 @@
+<div class="container admin-top">
+  <div class="row w-75 mx-auto mt-4">
+    <h4 class="bg-light w-50 text-center my-3">@cust.nameさんの注文履歴</h4>
+    <table class="order-table">
+      <tr class="bg-light border-top border-bottom border-black-50">
+        <th class="table-item w-25">購入日時</th>
+        <th class="table-item w-25">注文個数</th>
+        <th class="table-item w-25">注文ステータス</th>
+      </tr>
+      <% 10.times do %> <!-- @cust_orders.each do |order| -->
+        <tr class="border-bottom border-black-50">
+          <td class="table-item">
+            <%= link_to "cust_order.created_at", admin_order_path(1) %>
+          </td>
+          <td class="table-item">
+            cust_order.orderdetails.sum(:piece)
+          </td>
+          <td class="table-item">
+            cust_order.order_status
+          </td>
+        </tr>
+      <% end %>
+      <% #paginate @orders %>
+    </table>
+  </div>
+</div>

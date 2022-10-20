@@ -1,1 +1,33 @@
 @import '~bootstrap/scss/bootstrap';
+
+.admin-top .order-table tr {
+  line-height: 2.4;
+}
+
+.admin-top .table-item {
+  padding-left: 15px;
+}
+
+.admin-order-show .btn-success {
+  margin-left: 15px;
+}
+
+.admin-order-show .table-item {
+  padding-left: 15px;
+}
+
+.admin-order-show .customer-table tr {
+  line-height: 2.1;
+}
+
+.admin-order-show .customer-table th {
+  width: 170px;
+}
+
+.admin-order-show .order-table tr {
+  line-height: 2.6;
+}
+
+.admin-order-show .sum-table {
+  line-height: 2;
+}
