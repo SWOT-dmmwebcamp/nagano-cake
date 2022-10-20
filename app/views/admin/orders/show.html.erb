@@ -42,7 +42,7 @@
     <div class="col-9">
       <table class="order-table border-top border-bottom border-black-50 w-100">
         <tr class="bg-light">
-          <th class="table-item w-25">商品名</th>
+          <th class="table-item">商品名</th>
           <th class="table-item">単価(税込)</th>
           <th class="table-item">数量</th>
           <th class="table-item">小計</th>
@@ -51,13 +51,13 @@
         </tr>
         <% 4.times do %> <!-- @order_details.each do |order_detail| -->
           <tr>
-            <td class="table-item">order.orderdetails.item.item_name</td>
-            <td class="table-item">order.orderdetails.item.price</td>
-            <td class="table-item">order.orderdetails.piece</td>
-            <td class="table-item">X,000</td>
-            <td class="table-item">
+            <td class="table-item">チョコバナナミルフィーユ</td> <!-- order.orderdetails.item.item_name -->
+            <td class="table-item">1,100</td> <!-- order.orderdetails.item.price -->
+            <td class="table-item">1</td> <!-- order.orderdetails.piece -->
+            <td class="table-item">1,100</td>
+            <td align="center">
               <%= form_with model: @order_detail do |f| %>
-                <%= f.select :item_status, [["着手不可", "0"], ["製作待ち", "1"], ["製作中", "2"], ["製作完了", "3"]], {}, {class: "btn btn-outline-secondary px-4"} %>
+                <%= f.select :item_status, [["着手不可", "0"], ["製作待ち", "1"], ["製作中", "2"], ["製作完了", "3"]], {}, {class: "btn btn-outline-secondary w-50"} %>
                 <%= f.submit '更新', class: "btn btn-success" %>
               <% end %>
             </td>

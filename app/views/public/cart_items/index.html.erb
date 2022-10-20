@@ -1,0 +1,31 @@
+<div class="container public-cart-index">
+  <div class="row mt-4">
+    <div class="w-75 mx-auto">
+      <h4 class="bg-light w-25 text-center my-3">ショッピングカート</h4>
+      <table class="item-table table-bordered w-100 mx-auto">
+        <tr class="bg-light">
+          <th class="table-item">商品名</th>
+          <th class="table-item">単価(税込)</th>
+          <th class="table-item">数量</th>
+          <th class="table-item">小計</th>
+          <th class="table-item"></th>
+        </tr>
+        <% 4.times do %> <!-- @order_details.each do |order_detail| -->
+          <tr>
+            <td class="table-item">チョコバナナミルフィーユ</td>
+            <td class="table-item">1,100</td>
+            <td class="px-0" align="center">
+              <%= form_with model: @cart_items do |f| %>
+                <%= f.select :piece, @cnt, {}, {class: "btn btn-outline-secondary"} %>
+                <%= f.submit '変更', class: "btn btn-success" %>
+              <% end %>
+            </td>
+            <td class="table-item">1,000</td>
+            <td align="center">
+              <%= link_to "削除する", request.referer, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>

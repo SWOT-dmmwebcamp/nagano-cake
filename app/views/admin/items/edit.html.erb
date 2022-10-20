@@ -1,9 +1,8 @@
 <div class="container">
-  <h4 class="bg-light w-25 text-center my-3">商品新規登録</h4>
-
+  <h4>商品編集</h4>
   <div class="row">
 
-      <%= form_with model: @item, url:new_admin_item_path do |f| %>
+      <%= form_with model: @item, url: edit_admin_item_path(@item.id), method: :patch do |f| %>
       <div class="form-group">
         <span>商品画像</span>
         <%= f.file_field :image, accept: "image/*" %>
@@ -34,7 +33,7 @@
           <%= f.label :sales_status, '販売停止中' %>
       </div>
       <div class="form-group">
-        <%= f.submit '新規登録' %>
+        <%= f.submit '変更を保存' %>
       </div>
         <% end %>
       <% end %>

@@ -1,5 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
+
+/*---------------------------------
+  注文履歴(admin)
+---------------------------------*/
+
 .admin-top .order-table tr {
   line-height: 2.4;
 }
@@ -30,4 +35,21 @@
 
 .admin-order-show .sum-table {
   line-height: 2;
+}
+
+
+/*---------------------------------
+  カート(public)
+---------------------------------*/
+
+.public-cart-index .item-table tr {
+  line-height: 2.8;
+}
+
+.public-cart-index .table-item {
+  padding-left: 5px;
+}
+
+.public-cart-index .item-table .btn-success {
+  margin-left: 5px;
 }
