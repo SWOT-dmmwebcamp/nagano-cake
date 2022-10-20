@@ -1,0 +1,87 @@
+<div class="container admin-order-show">
+  <div class="row mx-auto mt-4">
+    <h4 class="bg-light w-25 text-center my-3">注文履歴詳細　<%= link_to "仮", admin_root_path, class: "btn btn-primary" %></h4>
+    <table class="customer-table">
+      <tr>
+        <th class="table-item">購入者</th>
+        <td><%= link_to "@order.customer.name", admin_path(1) %></td>
+      </tr>
+      <tr>
+        <th class="table-item">注文日</th>
+        <td>@order.created_at</td>
+      </tr>
+      <tr>
+        <th class="table-item" rowspan="2">配送先</th>
+        <td>@order.delivery_zip / @order.delivery_address</td>
+      </tr>
+      <tr>
+        <td>@order.delivery_name</td>
+      </tr>
+      <tr>
+        <th class="table-item">支払方法</th>
+        <td><%= Order.pay_types_i18n[Order.pay_types.key(@sum_price)] %></td>
+      </tr>
+      <tr>
+        <th class="table-item">注文ステータス</th>
+        <td>
+          <%= form_with model: @order do |f| %>
+            <%= 
+              f.select :order_status, 
+              [["入金待ち", "0"], ["入金確認", "1"], ["製作中", "2"], ["発送準備中", "3"], ["入金確認", "1"], ["発送済み", "4"]],
+              {},
+              {class: "btn btn-outline-secondary"} 
+            %>
+            <%= f.submit '更新', class: "btn btn-success" %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-9">
+      <table class="order-table border-top border-bottom border-black-50 w-100">
+        <tr class="bg-light">
+          <th class="table-item w-25">商品名</th>
+          <th class="table-item">単価(税込)</th>
+          <th class="table-item">数量</th>
+          <th class="table-item">小計</th>
+          <th class="table-item w-25">製作ステータス</th>
+          <th></th>
+        </tr>
+        <% 4.times do %> <!-- @order_details.each do |order_detail| -->
+          <tr>
+            <td class="table-item">order.orderdetails.item.item_name</td>
+            <td class="table-item">order.orderdetails.item.price</td>
+            <td class="table-item">order.orderdetails.piece</td>
+            <td class="table-item">X,000</td>
+            <td class="table-item">
+              <%= form_with model: @order_detail do |f| %>
+                <%= f.select :item_status, [["着手不可", "0"], ["製作待ち", "1"], ["製作中", "2"], ["製作完了", "3"]], {}, {class: "btn btn-outline-secondary px-4"} %>
+                <%= f.submit '更新', class: "btn btn-success" %>
+              <% end %>
+            </td>
+            <% #@sum_price += order.orderdetails.item.price * @tax * order.orderdetails.piece %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    
+    <div class="col-3 d-flex align-items-end">
+      <table class="sum-table mx-auto">
+        <tr>
+          <th>商品合計</th>
+          <td align="right">@sum_price</td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td align="right">@order.delivery_fee</td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <td align="right" class="fw-bold">sum</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
