@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   
   get '/cart_items' => 'public/cart_items#index'
   
+
   namespace :admin do
     root to: 'homes#top'
     get '/cust_orders/:id' => 'homes#show'
