@@ -1,39 +1,38 @@
 <div class="container">
-  <h4>商品編集</h4>
-  <div class="row">
+  <h4 class="bg-light w-25 text-center my-3">商品編集</h4>
+  <div class="row justify-content-center">
 
-      <%= form_with model: @item, url: edit_admin_item_path(@item.id), method: :patch do |f| %>
+      <%= form_with model: @item, url:admin_item_path(@item.id), method: :patch do |f| %>
       <div class="form-group">
-        <span>商品画像</span>
+        <%= f.label :商品画像 %>
         <%= f.file_field :image, accept: "image/*" %>
       </div>
       <div class="form-group">
-        <span>商品名</span>
+        <%= f.label :商品名 %>
         <%= f.text_field :item_name %>
       </div>
       <div class="form-group">
-        <span>商品説明</span>
-        <%= f.text_area :caption %>
+        <%= f.label :商品説明 %>
+        <%= f.text_field :caption, size:'50' %>
       </div>
       <div class="form-group">
-        <span>ジャンル</span>
+        <%= f.label :ジャンル %>
         <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), class: "form-control" %>
       </div>
       <div class="form-group">
-        <span>税抜価格</span>
+        <%= f.label :税抜価格 %>
         <%= f.text_field :price %>円
       </div>
-
       <div class="form-group">
-        <span>販売ステータス</span>
-        <%= form_with model: @item, url:admin_items_path do |form| %>
-          <%= form.radio_button :salse_status, :true, checked: true %>
-          <%= f.label :salse_status, '販売中' %>
-          <%= form.radio_button :salse_status, :false %>
+        <%= f.label :販売ステータス %>
+        <%= form_with model: @item, url:admin_item_path(@item) do |form| %>
+          <%= form.radio_button :sales_status, :true, checked: true %>
+          <%= f.label :sales_status, '販売中' %>
+          <%= form.radio_button :sales_status, :false %>
           <%= f.label :sales_status, '販売停止中' %>
       </div>
-      <div class="form-group">
-        <%= f.submit '変更を保存' %>
+      <div class="row justify-content-center mb-3">
+        <%= f.submit '変更を保存', class:"btn btn-success" %>
       </div>
         <% end %>
       <% end %>
