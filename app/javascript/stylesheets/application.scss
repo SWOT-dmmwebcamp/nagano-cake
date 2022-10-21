@@ -1,1 +1,42 @@
 @import '~bootstrap/scss/bootstrap';
+
+/*---------------------------------
+  注文履歴(admin)
+---------------------------------*/
+
+.admin-top .table-item {
+  padding-left: 15px;
+}
+
+.admin-order-show .btn-success {
+  margin-left: 5px;
+}
+
+.admin-order-show .table-item {
+  padding-left: 15px;
+}
+
+.admin-order-show .customer-table th {
+  width: 170px;
+}
+
+
+/*---------------------------------
+  カート(public)
+---------------------------------*/
+
+.public-cart-index .table-item {
+  padding-left: 5px;
+}
+
+.public-cart-index .item-table .btn-success {
+  margin-left: 5px;
+}
+
+.public-cart-index table th {
+  border: 2px solid gray;
+}
+
+.public-cart-index table td {
+  border: 2px solid gray;
+}
