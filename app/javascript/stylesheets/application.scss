@@ -14,7 +14,7 @@
 }
 
 .admin-order-show .btn-success {
-  margin-left: 15px;
+  margin-left: 5px;
 }
 
 .admin-order-show .table-item {
@@ -52,4 +52,16 @@
 
 .public-cart-index .item-table .btn-success {
   margin-left: 5px;
+}
+
+.public-cart-index .sum-table tr {
+  line-height: 2.8;
+}
+
+.public-cart-index table th {
+    border: 2px solid gray;
+}
+
+.public-cart-index table td {
+    border: 2px solid gray;
 }
