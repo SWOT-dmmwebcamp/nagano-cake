@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
+
   devise_for :customers
   devise_for :users
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
