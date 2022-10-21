@@ -1,10 +1,10 @@
 <div class="container admin-order-show">
-  <div class="row mx-auto mt-3">
+  <div class="row mx-auto mt-2">
     <div class="d-flex justify-content-start align-items-center">
       <h4 class="bg-light text-center my-3 px-4">注文履歴詳細</h4>
       <%= link_to "仮btn", admin_root_path, class: "btn btn-primary btn-sm h-50" %>
     </div>
-    <table class="customer-table">
+    <table class="table table-sm customer-table table-borderless">
       <tr>
         <th class="table-item">購入者</th>
         <td><%= link_to "テストユーザー", admin_path(1) %></td> <!-- @order.customer.name -->
@@ -41,9 +41,9 @@
     </table>
   </div>
   
-  <div class="row mt-4 w-100">
+  <div class="row mt-2 w-100">
     <div class="col-9">
-      <table class="order-table border-top border-bottom border-black-50 w-100">
+      <table class="table order-table border-top border-bottom table-borderless border-black-50 w-100">
         <tr class="bg-light">
           <th class="table-item">商品名</th>
           <th class="table-item">単価(税込)</th>
@@ -71,7 +71,7 @@
     </div>
     
     <div class="col-3 d-flex align-items-end">
-      <table class="sum-table mx-auto w-75">
+      <table class="table table-sm table-borderless sum-table mx-auto w-75">
         <tr>
           <th>商品合計</th>
           <td align="right">4,400円</td> <!-- @sum_price -->
