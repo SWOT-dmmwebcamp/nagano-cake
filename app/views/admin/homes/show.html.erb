@@ -1,6 +1,8 @@
 <div class="container admin-top">
-  <div class="row w-75 mx-auto mt-4">
-    <h4 class="bg-light w-50 text-center my-3">@cust.nameさんの注文履歴</h4>
+  <div class="row w-75 mx-auto mt-3">
+    <div class="d-flex justify-content-start">
+      <h4 class="bg-light text-center my-3 px-4">テストユーザーさんの注文履歴</h4> <!-- @cust.name -->
+    </div>
     <table class="order-table">
       <tr class="bg-light border-top border-bottom border-black-50">
         <th class="table-item w-25">購入日時</th>
@@ -10,13 +12,13 @@
       <% 10.times do %> <!-- @cust_orders.each do |order| -->
         <tr class="border-bottom border-black-50">
           <td class="table-item">
-            <%= link_to "cust_order.created_at", admin_order_path(1) %>
+            <%= link_to "2000/01/01", admin_order_path(1) %> <!-- cust_order.created_at -->
           </td>
           <td class="table-item">
-            cust_order.orderdetails.sum(:piece)
+            1 <!-- cust_order.orderdetails.sum(:piece) -->
           </td>
           <td class="table-item">
-            cust_order.order_status
+            入金待ち <!-- cust_order.order_status -->
           </td>
         </tr>
       <% end %>
