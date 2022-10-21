@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2022_10_19_062521) do
     t.string "address", null: false
     t.string "zipcode", null: false
     t.string "phone_number", null: false
-    t.string "password", null: false
     t.boolean "delete_flag", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
