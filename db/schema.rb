@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_10_19_062521) do
   create_table "destinations", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "zipcode", null: false
-    t.string "addresss", null: false
+    t.string "address", null: false
     t.string "delivery_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
