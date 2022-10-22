@@ -10,23 +10,25 @@
         <th class="table-item w-25">注文個数</th>
         <th class="table-item w-25">注文ステータス</th>
       </tr>
-      <% 10.times do %> <!-- @orders.each do |order| -->
+      <% @orders.each do |order| %>
         <tr class="border-bottom border-black-50">
           <td class="table-item">
-            <%= link_to "2000/01/01", admin_order_path(1) %> <!-- order.created_at -->
+            <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(1) %>
           </td>
           <td class="table-item">
-            テストユーザー <!-- order.customer.name -->
+            <%= order.customer.last_name %> <%= order.customer.first_name %>
           </td>
           <td class="table-item">
-            1 <!-- order.orderdetails.sum(:piece) -->
+            <%= order.orderdetails.sum(:piece) %>
           </td>
           <td class="table-item">
-            入金待ち <!-- order.order_status -->
+            <%= Order.order_statuses_i18n[order.order_status] %>
           </td>
         </tr>
       <% end %>
-      <% #paginate @orders %>
     </table>
+    <div class="d-flex justify-content-center">
+      <%= paginate @orders %>
+    </div>
   </div>
 </div>
