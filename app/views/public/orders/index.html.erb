@@ -1,1 +1,56 @@
-<h1>test111</h1>
+<div class="container admin-order-show">
+  <div class="row mx-auto mt-2">
+    <div class="d-flex justify-content-start align-items-center">
+      <h4 class="bg-light text-center my-3 px-4">注文情報入力</h4>
+    </div>
+    <div>
+      <%= form_with model: @order_datail, url: orders_confirm_path do |f| %>
+        <span class="fw-bold">支払い方法</span>
+        <div class="px-5 mb-2">
+          <div>
+            <%= f.radio_button :sales, :draft, checked: true %>
+            <%= f.label :sales_draft, 'クレジットカード' %>
+          </div>
+          <div>
+            <%= f.radio_button :sales, :on_sale %>
+            <%= f.label :sales_on_sale, '銀行振り込み' %>
+          </div>
+        </div>
+        
+        <span class="fw-bold">お届け先</span>
+        <div class="px-5 mb-2">
+          <div class="mb-2">
+            <%= f.radio_button :status, :test1, checked: true %>
+            <%= f.label :status_test1, 'ご自身の住所' %>
+            <div class="px-5">
+              <span>〒1500041 東京都渋谷区神南1-19-11</span><br>
+              <span>テストユーザー</span>
+            </div>
+          </div>
+          <div class="mb-2">
+            <%= f.radio_button :status, :test2 %>
+            <%= f.label :status_test2, '登録住所から選択' %>
+            <div class="mt-1 px-4">
+              <%= f.select :mc_id, options_for_select([['送り先1', '1'], ['送り先2', '2'], ['送り先3', '3']]), {include_blank: '送り先を選択'}, {class: 'btn btn-outline-secondary', :style => "width: 60%"} %>
+            </div>
+          </div>
+          <div>
+            <%= f.radio_button :status, :test3 %>
+            <%= f.label :status_test3, '新しいお届け先' %>
+            <div class="px-4">
+              <%= f.label :status, '郵便番号', :style => "width: 15%" %>
+              <%= f.text_field :page, placeholder: "0000000", class: "form-text", :style => "width: 20%" %><br>
+              <%= f.label :status, '住所', :style => "width: 15%" %>
+              <%= f.text_field :page, placeholder: "東京都渋谷区代々木神園町1-2-3", class: "form-text", :style => "width: 45%" %><br>
+              <%= f.label :status, '宛名', :style => "width: 15%" %>
+              <%= f.text_field :page, placeholder: "田中太郎", class: "form-text", :style => "width: 20%" %>
+            </div>
+          </div>
+        </div>
+        <div class="my-3 px-5">
+          <%= f.submit "確認画面へ進む", class: "btn btn-primary px-4 my-2" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
