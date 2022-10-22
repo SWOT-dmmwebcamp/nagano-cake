@@ -6,15 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-20.times do |num|
-  Order.create!(
-    customer_id: "1",
-    delivery_zip: "1234567",
-    delivery_address: "東京都XX区XX町 X-X-X",
-    delivery_name: "user#{num}",
-    delivery_fee: "800",
-    total_price: "1000",
-    pay_type: 0,
-    order_status: 0
-    )
-  end
+Admin.create!(email:  "1111@1111", password: "222222")
+
+Customer.create!(last_name: '醍醐', first_name: '芽衣',kana_first_name: 'メイ',kana_last_name: 'ダイゴ', zipcode: '1810091',
+address: '東京都○○区○○市', phone_number: '1112223333', email: 'meidaigodds@gmail.com', password: '111111111', delete_flag: true)
+
