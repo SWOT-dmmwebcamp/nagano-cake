@@ -1,23 +1,27 @@
 Rails.application.routes.draw do
 
+
   devise_for :customers
+devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
   devise_for :users
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
-  
+
+
   scope module: :public do
-    root to: 'homes#top'
-    get "/about" => "homes#about" , as: "about"
-    resources :items, only: [:index, :show]
-    resources :registrations, only: [:new, :create]
-    resources :sessions, only: [:new, :create, :destroy]
-    resources :customers
-    resources :cart_items
-    get "/orders/confirm" => "orders#confirm"
-    get "/orders/complete" => "orders#complete"
-    resources :orders
-    resources :deliverys, only: [:index, :edit, :update, :create, :destroy]
+    #root to: 'homes#top'
+    #get "/about" => "homes#about" , as: "about"
+    #resources :items, only: [:index, :show]
+    #resources :registrations, only: [:new, :create]
+    #resources :sessions, only: [:new, :create, :destroy]
+    # :customers
+    #resources :cart_items
+    #resources :orders
+    #resources :deliverys, only: [:index, :edit, :update, :create, :destroy]
   end
 
   namespace :admin do
