@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  
-devise_for :customers,skip: [:passwords], controllers: {
+
+  devise_for :customers,skip: [:passwords], controllers: {
+
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
-
+  
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
@@ -14,8 +15,7 @@ devise_for :customers,skip: [:passwords], controllers: {
     root to: 'homes#top'
     get "/about" => "homes#about" , as: "about"
     resources :items, only: [:index, :show]
-    
-     resources :customers
+    resources :customers
     resources :cart_items
     resources :orders
     resources :deliverys, only: [:index, :edit, :update, :create, :destroy]
