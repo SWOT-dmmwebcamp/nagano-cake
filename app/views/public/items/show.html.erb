@@ -10,7 +10,7 @@
         <h3>￥<%= @item.add_tax_price.to_s(:delimited) %></h3>
         <p class="mt-2"> (税込)</p>
       </div>
-      <%#個数選択ボックスとカートに入れるボタン(間違えてる)%>
+      <%#個数選択ボックスとカートに入れるボタン(間違えてる可能性あり)%>
       <div class="d-flex">
         <%= form_with model: @cart_items, url:cart_items_path do |f| %>
           <%= f.select :piece, *[1..10], { include_blank: "個数選択"} %>
