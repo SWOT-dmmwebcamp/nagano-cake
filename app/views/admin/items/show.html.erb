@@ -4,11 +4,15 @@
     <div class="col-md-3">
       <%= image_tag @item.image, size: "200x200" %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
       <table class="table-item m-3">
         <tr>
           <th>商品名</th>
           <td><%= @item.item_name %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th>
+          <td><%= @item.caption %></td>
         </tr>
         <tr>
           <th>ジャンル</th>

@@ -4,3 +4,9 @@
         pay_type:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
+        order_status:
+          pay_wait: "入金待ち"
+          pay_confirm: "入金確認"
+          making: "製作中"
+          send_prepare: "発送準備中"
+          send: "発送済み"
