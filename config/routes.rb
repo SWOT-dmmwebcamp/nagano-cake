@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+
   devise_for :customers
   devise_for :users
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
+
   
   scope module: :public do
     root to: 'homes#top'
@@ -14,11 +16,11 @@ Rails.application.routes.draw do
     resources :sessions, only: [:new, :create, :destroy]
     resources :customers
     resources :cart_items
-    get "/orders/confirm" => "orders#confirm"
-    get "/orders/complete" => "orders#complete"
     resources :orders
     resources :deliverys, only: [:index, :edit, :update, :create, :destroy]
   end
+
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :admin do
     root to: 'homes#top'
@@ -28,5 +30,4 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :edit, :update, :create]
     resources :customers, only: [:index,:show,:edit,:update]
   end
-  
 end
