@@ -13,7 +13,7 @@
       <% @orders.each do |order| %>
         <tr class="border-bottom border-black-50">
           <td class="table-item">
-            <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(1) %>
+            <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id) %>
           </td>
           <td class="table-item">
             <%= order.customer.last_name %> <%= order.customer.first_name %>

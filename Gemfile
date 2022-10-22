@@ -62,4 +62,3 @@ gem "enum_help"
 gem 'bootstrap4-kaminari-views'
 
 gem 'net-smtp'
-
