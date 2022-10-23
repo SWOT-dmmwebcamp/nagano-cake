@@ -1,9 +1,9 @@
 <div class="container">
   <h4 class="bg-light w-25 text-center my-3">商品一覧(全<%= @item.count %>件)</h4>
   <div class="row justify-content-center">
-    <div class="d-flex flex-wrap bd-highlight">
+    <div class="col-sm-12 d-flex flex-wrap bd-highlight">
         <% @items.each do |item| %>
-          <div class="card-borderless w-25 my-4">
+          <div class="col-sm-3 card-borderless my-3">
           <%= link_to item_path(item) do %>
             <%= image_tag item.image, size: "150x130" %><br>
             <strong class="overflow-wrap"><%= item.item_name %></strong><br>
