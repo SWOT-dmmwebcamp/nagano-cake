@@ -24,7 +24,7 @@ class Public::DeliverysController < ApplicationController
   end
     
   def destroy
-    destination = Destination.find(params[:id])  
+    destination = Destination.find(params[:id])
     destination.destroy
     redirect_to deliverys_path
   end
