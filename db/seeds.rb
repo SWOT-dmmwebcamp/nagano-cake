@@ -18,7 +18,6 @@ item.image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.jpeg
                   filename: 'no_image.jpeg')
 
 Order.create!(created_at: '2022/10/22', delivery_zip: '012-3456', delivery_address: '東京都港区すみたい市', delivery_name: '私田',
-delivery_fee: 800, pay_type: 0, total_price: '110800', order_status: 1, customer_id: 1
-)
+delivery_fee: 800, pay_type: 0, total_price: 1400, order_status: 1, customer_id: 1)
 
 Orderdetail.create!(order_id: 1, item_id: 1, price_at_purchase: 300, piece: 2, item_status: 3)
