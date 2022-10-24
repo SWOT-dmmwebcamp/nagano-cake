@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   
-  #belongs_to :customer
-  #has_many :orderdetails
+  belongs_to :customer
+  has_many :orderdetails
   
   enum pay_type: { credit_card: 0, transfer: 1 }
   enum order_status: { pay_wait: 0, pay_confirm: 1, making: 2, send_prepare: 3, sent: 4 }
