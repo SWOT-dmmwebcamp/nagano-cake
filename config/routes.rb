@@ -18,8 +18,9 @@ Rails.application.routes.draw do
     get "/about" => "homes#about" , as: "about"
     resources :items, only: [:index, :show]
     resources :customers
+    delete "/cart_items/destroy_all" => "cart_items#destroy_all"
     resources :cart_items, only: [:index, :create, :update, :destroy]
-    get '/orders/confirm' => 'orders#confirm'
+    post '/orders/confirm' => 'orders#confirm'
     get '/orders/complete' => 'orders#complete'
     resources :orders
     resources :deliverys, only: [:index, :edit, :update, :create, :destroy]

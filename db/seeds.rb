@@ -24,14 +24,22 @@ Customer.create!(
   delete_flag: true
   )
 
-CartItem.create!(
-  customer_id: 1,
-  item_id: 1,
-  piece: 1,
-  )
-  
-CartItem.create!(
-  customer_id: 1,
-  item_id: 2,
-  piece: 2,
-  )
+3.times do |num|
+num = 1
+  CartItem.create!(
+    customer_id: 1,
+    item_id: num,
+    piece: num,
+    )
+end
+
+3.times do |num|
+  num = 1
+    Destination.create!(
+      customer_id: 1,
+      zipcode: 1111111,
+      addresss: "東京都XX区XX町#{num}",
+      delivery_name: "test_user#{num}"
+    )
+  num += 1
+end

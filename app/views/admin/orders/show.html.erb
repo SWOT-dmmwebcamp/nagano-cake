@@ -60,10 +60,10 @@
             <td align="center">
               <%= form_with url: admin_orderdetail_path(order_detail.id), method: :patch do |f| %>
                 <%= f.select :item_status,
-                @item_status,
-                { selected: order_detail.item_status },
-                {class: "btn btn-outline-secondary btn-sm"}
-              %>
+                  @item_status,
+                  { selected: order_detail.item_status },
+                  {class: "btn btn-outline-secondary btn-sm"}
+                %>
                 <%= f.submit '更新', class: "btn btn-success btn-sm" %>
               <% end %>
             </td>
