@@ -54,12 +54,16 @@
         <% @order_details.each do |order_detail| %>
           <tr>
             <td class="table-item"><%= order_detail.item.item_name %></td>
-            <td class="table-item"><%= order_detail.tax_price %></td>
+            <td class="table-item"><%= order_detail.tax_price.to_s(:delimited) %></td>
             <td class="table-item"><%= order_detail.piece %></td>
-            <td class="table-item"><%= order_detail.subtotal %></td>
+            <td class="table-item"><%= order_detail.subtotal.to_s(:delimited) %></td>
             <td align="center">
-              <%= form_with model: @order_detail do |f| %>
-                <%= f.select :item_status, [["着手不可", "0"], ["製作待ち", "1"], ["製作中", "2"], ["製作完了", "3"]], {}, {class: "btn btn-outline-secondary btn-sm"} %>
+              <%= form_with url: admin_orderdetail_path(order_detail.id), method: :patch do |f| %>
+                <%= f.select :item_status,
+                  @item_status,
+                  { selected: order_detail.item_status },
+                  {class: "btn btn-outline-secondary btn-sm"}
+                %>
                 <%= f.submit '更新', class: "btn btn-success btn-sm" %>
               <% end %>
             </td>
@@ -73,17 +77,20 @@
       <table class="table table-sm table-borderless sum-table mx-auto w-75">
         <tr>
           <th>商品合計</th>
-          <td align="right"><%= @sum_price %>円</td>
+          <td align="right"><%= @sum_price.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>送料</th>
-          <td align="right"><%= @order.delivery_fee %>円</td>
+          <td align="right"><%= @order.delivery_fee.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>請求額合計</th>
-          <td align="right" class="fw-bold"><%= @sum_price + @order.delivery_fee %> 円</td>
+          <td align="right" class="fw-bold"><%= (@sum_price + @order.delivery_fee).to_s(:delimited) %> 円</td>
         </tr>
       </table>
     </div>
+  </div>
+  <div class="d-flex justify-content-start mt-3">
+    <%= link_to "注文履歴一覧に戻る", admin_root_path, class: "btn btn-primary btn-sm" %>
   </div>
 </div>
