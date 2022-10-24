@@ -14,15 +14,17 @@
  *= require_self
  */
  
+ .navbar-brand-light{
+    font-size: 28px;
+    font-style: italic;
+    
+}
 
 footer{
     width: 100%;
     height: 40px;
     text-align: center;
     line-height: 40px;
-    background-color: #6e5064;
+    background-color: #ab0f50;
 }
 
-.footer-text{
-    color: #fff;
-}

@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
-    <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <%= csrf_meta_tags %>
-
+<head>
+  <title>NaganoCake</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
       <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
           <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<body>
-  <%= render "/layouts/header" %>
+<body style="background-color:#f6efdb;">
+  <header style="background-color:#ab0f50;">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container"> <a class="navbar-brand-light" style="color:#ffffff;" href="/">NaganoCake</a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
+              <%= render 'layouts/customer-header' %>
+                <% elsif admin_signed_in? %>
+                  <%= render 'layouts/admin-header' %>
+                    <% else %>
+                      <%= render 'layouts/logout-header' %>
+                        <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="input-group col-3 pb-2 mr-5 ml-auto"> <input type="text" class="form-control form-control-sm" placeholder="キーワードを入力"> </div>
+  </header>
   <main>
-    <%= yield %>
+    <%# 各ページ本体　%>
+      <%= yield %>
   </main>
-  <footer class="footer fixed-bottom"> 
-
-    <p class="footer-text">© Naganocake</p>
+  <footer class="footer fixed-bottom">
+    <p class="footer-text" style="color:#ffffff;">© All rights reserved by Infratop.Inc.</p>
+    </div>
   </footer>
 </body>
-</html>
 </html>
