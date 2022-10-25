@@ -1,5 +1,5 @@
 <div class="container d-flex">
-  <div class="col-2 pt-4 d-flex align-items-start"> 
+  <div class="col-2 pt-4 d-flex align-items-start">
     <div>
       <h5 class="sub-title pb-1 text-center border-bottom border-danger ">ジャンル検索</h5>
       <ul class="sub-menu d-flex flex-column">
@@ -18,7 +18,11 @@
       <div class="sub-contents d-flex flex-wrap">
         <% @items.each do |item| %>
           <div class="item-box mr-1">
-            <%= image_tag item.image, size: "150x130" %>
+            <% if item.image.attached? %>
+              <%= image_tag item.image, size: "150x130" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "150x130" %>
+            <% end %>
               <div class="item-name" style="color:#402717;"> <strong><p><%= item.item_name %></p></strong></div>
               <div class="item-praice" style="color:#402717;"> <strong><p>￥<%= item.price %></p></strong></div>
           </div>
