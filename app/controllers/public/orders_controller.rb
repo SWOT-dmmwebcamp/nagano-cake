@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  
+
   def confirm
     @order = Order.new
     @orderdetail = Orderdetail.new
@@ -46,16 +46,18 @@ class Public::OrdersController < ApplicationController
     order.save
     redirect_to orders_complete_path
   end
-  
+
   def complete
   end
-  
+
   def index
+    @orders = Order.all
   end
-  
+
   def show
+    @order = Order.find(params[:id])
   end
-  
+
   def new
     @cust = Customer.find(1) #ログイン機能出来たらfind(current_customer.id)にする
     @cust_name = @cust.last_name + " " + @cust.first_name
