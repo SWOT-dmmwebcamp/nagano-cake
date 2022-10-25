@@ -1,14 +1,22 @@
 <div class="container-md">
-  <h4 class="bg-light w-25 text-center my-3">商品詳細</h4>
+  <h4 class="bg-light text-center m-4", style="width:15%">商品詳細</h4>
   <div class="row justify-content-center">
     <div class="col-md-3">
-      <%= image_tag @item.image, size: "200x200" %>
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, size: "250x200" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "250x200" %>
+      <% end %>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
       <table class="table-item m-3">
         <tr>
-          <th>商品名</th>
+          <th style="width:35%">商品名</th>
           <td><%= @item.item_name %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th>
+          <td><%= @item.caption %></td>
         </tr>
         <tr>
           <th>ジャンル</th>

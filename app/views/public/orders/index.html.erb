@@ -1,1 +1,44 @@
-<h1>test1</h1>
+<div clsee="container">
+  <h4 class="bg-light text-center m-3", style="width:15%">注文履歴一覧</h4>
+  <div class="row m-5">
+    <table class="table table-bordered m-3">
+      <thead class="bg-light">
+        <tr>
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払金額</th>
+          <th>ステータス</th>
+          <th>注文詳細</th>
+        </tr>
+      </thead>
+      <% @orders.each do |order| %>
+      <tbody>
+        <tr>
+          <%#注文日%>
+          <td style="width: 10%"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+          <%#配送先%>
+          <td>
+            〒<%= order.delivery_zip %><br>
+            <%= order.delivery_address %><br>
+            <%= order.delivery_name %>
+          </td>
+          <%#注文商品%>
+          <td>
+            <% order.orderdetails.each do |orderdetail| %>
+              <%= orderdetail.item.item_name %><br>
+            <% end %>
+          </td>
+          <%#支払い金額%>
+          <td style="width: 10%"><%= order.total_price.to_s(:delimited) %>円</td>
+          <%#ステータス%>
+          <td style="width: 15%"><%= order.order_status %></td>
+          <td style="width: 10%">
+            <%= link_to "表示する", order_path(current_customer), class:"btn btn-primary" %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>
