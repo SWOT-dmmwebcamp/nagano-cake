@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_root_path
     when Customer
-      root_path #後で修正(会員マイページ)
+      my_page_path
     end
   end
 end
