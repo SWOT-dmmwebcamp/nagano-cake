@@ -13,8 +13,8 @@
   <div class="top-content col-9 p-3">
     <h4 class="top-text mb-2 text-center" style="color:#660000;"> ようこそ、ながのCAKEへ！！<br/> このサイトはケーキ販売のECサイトになります。<br/> 会員でない方も商品の閲覧はできますが、<br/> 購入には会員登録が必要になります。 </h4>
     <div class="sub-container pt-1 pl-5">
-      <h4 class="sub-title mb-3" style="color:#402717;"><strong>-- 新着商品 --</strong></h4>
-      <div class="sub-contents d-flex flex-wrap ">
+      <h4 class="sub-title mb-2" style="color:#402717;"><strong>-- 新着商品 --</strong></h4>
+      <div class="sub-contents d-flex flex-wrap">
         <% @items.each do |item| %>
           <div class="item-box mr-1">
             <%= image_tag item.image, size: "150x130" %>
