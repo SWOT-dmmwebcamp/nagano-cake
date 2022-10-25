@@ -8,8 +8,8 @@
               <%= f.submit "新規登録" ,class:"btn btn-sm btn-primary ml-3" %>
         </div>
         <% end %>
-          <table class="table mt-3">
-            <thead class="table-dark" style="background-color:#402717;">
+          <table class="table table-bordered  mt-3">
+            <thead style="background-color:#dcc8dc;">
               <tr>
                 <th>ジャンル</th>
                 <th></th>
@@ -17,8 +17,8 @@
             </thead>
             <tbody>
               <% @genres.each do |genre| %>
-                <tr>
-                  <td>
+                <tr style="background-color:#ffffff;">
+                  <td class="text-center">
                     <%= genre.name %>
                   </td>
                   <td class="text-center">
