@@ -2,7 +2,7 @@ class Public::OrdersController < ApplicationController
   
   def confirm
     @order = Order.new
-    @orderdetail = Orderdetail.new
+    @orderdetails = Orderdetail.new
     
     @cart_items = CartItem.where(customer_id: 1) #ログイン機能出来たらcurremt_customer.id
     @sum_price = 0
@@ -42,8 +42,31 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    order = Order.new #(order_params)
-    order.save
+    order = (1..1).map { { 
+      customer_id: "1", 
+      delivery_zip: "1234567",
+      delivery_address: "test_address",
+      delivery_name: "test_name",
+      delivery_fee: 800,
+      total_price: 1000,
+      pay_type: 0,
+      order_status: 0,
+      created_at: Time.current,
+      updated_at: Time.current
+    } }
+    Order.insert_all order
+    
+    orderdetails = (1..3).map { { 
+      order_id: 1,
+  	  item_id: 1,
+  	  price_at_purchase: 1,
+  	  piece: 1,
+  	  item_status: 0,
+  	  created_at: Time.current,
+      updated_at: Time.current
+    } }
+    Orderdetail.insert_all orderdetails
+    
     redirect_to orders_complete_path
   end
   
