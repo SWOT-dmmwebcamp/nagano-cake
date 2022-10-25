@@ -6,18 +6,40 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Admin.create!(email:  "1111@1111", password: "222222")
+Admin.create!(
+  email:  "1111@1111",
+  password: "222222"
+  )
 
-Customer.create!(last_name: '醍醐', first_name: '芽衣',kana_first_name: 'メイ',kana_last_name: 'ダイゴ', zipcode: '1810091',
-address: '東京都○○区○○市', phone_number: '1112223333', email: 'meidaigodds@gmail.com', password: '111111111', delete_flag: true)
+Customer.create!(
+  last_name: '醍醐',
+  first_name: '芽衣',
+  kana_first_name: 'メイ',
+  kana_last_name: 'ダイゴ',
+  zipcode: '1810091',
+  address: '東京都○○区○○市',
+  phone_number: '1112223333',
+  email: 'meidaigodds@gmail.com',
+  password: '111111111',
+  delete_flag: true
+  )
 
-Genre.create!(name: 'ケーキ')
+3.times do |num|
+num = 1
+  CartItem.create!(
+    customer_id: 1,
+    item_id: num,
+    piece: num,
+    )
+end
 
-item = Item.create!(genre_id: 1, item_name: 'イチゴ', caption: 'すっぱい', price: 300, sales_status: 'true')
-item.image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.jpeg')),
-                  filename: 'no_image.jpeg')
-
-Order.create!(created_at: '2022/10/22', delivery_zip: '012-3456', delivery_address: '東京都港区すみたい市', delivery_name: '私田',
-delivery_fee: 800, pay_type: 0, total_price: 1400, order_status: 1, customer_id: 1)
-
-Orderdetail.create!(order_id: 1, item_id: 1, price_at_purchase: 300, piece: 2, item_status: 3)
+3.times do |num|
+  num = 1
+    Destination.create!(
+      customer_id: 1,
+      zipcode: 1111111,
+      addresss: "東京都XX区XX町#{num}",
+      delivery_name: "test_user#{num}"
+    )
+  num += 1
+end
