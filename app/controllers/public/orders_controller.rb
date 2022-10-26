@@ -1,16 +1,16 @@
 class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
-  
+
   def confirm
     @order = Order.new
     @orderdetails = Orderdetail.new
-    @cart_items = CartItem.where(customer_id: current_customer.id) 
+    @cart_items = CartItem.where(customer_id: current_customer.id)
     @sum_price = 0
     @delivery_fee = 800
     @pay_type = Order.pay_types_i18n[params[:pay_type]]
-    @cust = Customer.find(current_customer.id) 
-    
-    @zip = 
+    @cust = Customer.find(current_customer.id)
+
+    @zip =
 
       case params[:status]
         when "tag1"
@@ -43,8 +43,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    order = (1..1).map { { 
-      customer_id: current_customer.id, 
+    order = (1..1).map { {
+      customer_id: current_customer.id,
       delivery_zip: params[:order][:delivery_zip],
       delivery_address: params[:order][:delivery_address],
       delivery_name: params[:order][:delivery_name],
@@ -56,14 +56,14 @@ class Public::OrdersController < ApplicationController
       updated_at: Time.current
     } }
     Order.insert_all order
-    
+
     order_data = Order.where(customer_id: current_customer.id).order(created_at: :desc).limit(1).pluck(:id)
     count_cart_items = CartItem.where(customer_id: current_customer.id).count
-    
+
     unless count_cart_items == 0 then
       cartitems = CartItem.where(customer_id: current_customer.id)
       cartitems.each do |i|
-        orderdetails = (1..1).map { { 
+        orderdetails = (1..1).map { {
           order_id: order_data[0],
       	  item_id: i.item_id,
       	  price_at_purchase: Item.where(id: i.item_id).pluck(:price)[0] * 1.1,
@@ -74,11 +74,11 @@ class Public::OrdersController < ApplicationController
         } }
         Orderdetail.insert_all orderdetails
       end
-      
-      items = CartItem.where(customer_id: current_customer.id) 
+
+      items = CartItem.where(customer_id: current_customer.id)
       items.destroy_all
     end
-    
+
     redirect_to orders_complete_path
   end
 
@@ -87,8 +87,8 @@ class Public::OrdersController < ApplicationController
 
   #顧客の注文履歴一覧
   def index
-    @customer = Customer.find(params[:id])
-    @orders = @customer.orders
+    @orders = Order.all
+    @order = @orders.where(customer_id: current_customer.id)
   end
 
   #顧客の注文履歴詳細

@@ -12,6 +12,6 @@ class Item < ApplicationRecord
 
 # 税込価格を計算するメソッド
   def add_tax_price
-    (self.price * 1.10).round
+    (self.price * 1.10).floor
   end
 end

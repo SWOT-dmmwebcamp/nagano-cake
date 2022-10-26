@@ -12,7 +12,7 @@
           <th>注文詳細</th>
         </tr>
       </thead>
-      <% @orders.each do |order| %>
+      <% @order.each do |order| %>
       <tbody>
         <tr>
           <%#注文日%>
@@ -32,9 +32,9 @@
           <%#支払い金額%>
           <td style="width: 10%"><%= order.total_price.to_s(:delimited) %>円</td>
           <%#ステータス%>
-          <td style="width: 15%"><%= order.order_status %></td>
+          <td style="width: 15%"><%= order.order_status_i18n %></td>
           <td style="width: 10%">
-            <%= link_to "表示する", order_path(current_customer), class:"btn btn-primary" %>
+            <%= link_to "表示する", order_path(order), class:"btn btn-primary" %>
           </td>
         </tr>
       </tbody>
