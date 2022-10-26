@@ -8,7 +8,6 @@ class Public::OrdersController < ApplicationController
     @sum_price = 0
     @delivery_fee = 800
     @pay_type = Order.pay_types_i18n[params[:pay_type]]
-
     @cust = Customer.find(current_customer.id) 
     
     @zip = 
@@ -101,7 +100,7 @@ class Public::OrdersController < ApplicationController
     @cust = Customer.find(current_customer.id) #ログイン機能出来たらfind(current_customer.id)にする
     @cust_name = @cust.last_name + " " + @cust.first_name
     @zip = @cust.zipcode[0,3] + "-" + @cust.zipcode[3,4]
-    @dest = Destination.where(customer_id: 1).pluck(:zipcode, :addresss, :delivery_name)
+    @dest = Destination.where(customer_id: current_customer.id).pluck(:zipcode, :addresss, :delivery_name)
     @destinations = []
     @dest.each do |d|
       @destinations.push("〒" + d[0] + " " + d[1] + " " + d[2])
