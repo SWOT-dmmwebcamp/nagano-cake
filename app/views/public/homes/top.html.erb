@@ -17,6 +17,7 @@
       <div class="sub-contents d-flex flex-wrap">
         <% @recent_items.each do |item| %>
           <div class="item-box mr-1">
+
             <%= link_to item_path(item) do %>
               <% if item.image.attached? %>
                 <%= image_tag item.image, size: "150x130" %>
@@ -26,6 +27,7 @@
                         <% end %>
                           <div class="item-name" style="color:#402717;"> <strong><p><%= item.item_name %></p></strong></div>
                           <div class="item-praice" style="color:#402717;"> <strong><p>￥<%= item.price %></p></strong></div>
+
           </div>
           <% end %>
             <%#paginate @recent_items %>

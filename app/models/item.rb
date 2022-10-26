@@ -10,7 +10,6 @@ class Item < ApplicationRecord
   validates :genre_id, presence: true
   validates :price, presence: true, numericality: {only_integer: true}
 
-
 # 税込価格を計算するメソッド
   def add_tax_price
     (self.price * 1.10).round

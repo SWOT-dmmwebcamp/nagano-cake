@@ -1,16 +1,17 @@
 class Public::OrdersController < ApplicationController
-
+  before_action :authenticate_customer!
+  
   def confirm
     @order = Order.new
-    @orderdetail = Orderdetail.new
+    @orderdetails = Orderdetail.new
     
     @cart_items = CartItem.where(customer_id: 1) #ログイン機能出来たらcurremt_customer.id
     @sum_price = 0
     @delivery_fee = 800
     @pay_type = Order.pay_types_i18n[params[:pay_type]]
     @cust = Customer.find(1) #ログイン機能出来たらcurremt_customer.id
-    
-    @zip = 
+
+    @zip =
       case params[:status]
         when "tag1"
           "〒" + @cust.zipcode
@@ -19,8 +20,8 @@ class Public::OrdersController < ApplicationController
         when "tag3"
           params[:zip]
       end
-    
-    @address = 
+
+    @address =
       case params[:status]
         when "tag1"
           @cust.address
@@ -29,8 +30,8 @@ class Public::OrdersController < ApplicationController
         when "tag3"
           params[:add]
       end
-    
-    @name = 
+
+    @name =
       case params[:status]
         when "tag1"
           @cust.last_name + " " + @cust.first_name
@@ -40,20 +41,46 @@ class Public::OrdersController < ApplicationController
           params[:name]
       end
   end
-  
+
   def create
-    order = Order.new #(order_params)
-    order.save
+    order = (1..1).map { { 
+      customer_id: "1", 
+      delivery_zip: "1234567",
+      delivery_address: "test_address",
+      delivery_name: "test_name",
+      delivery_fee: 800,
+      total_price: 1000,
+      pay_type: 0,
+      order_status: 0,
+      created_at: Time.current,
+      updated_at: Time.current
+    } }
+    Order.insert_all order
+    
+    orderdetails = (1..3).map { { 
+      order_id: 1,
+  	  item_id: 1,
+  	  price_at_purchase: 1,
+  	  piece: 1,
+  	  item_status: 0,
+  	  created_at: Time.current,
+      updated_at: Time.current
+    } }
+    Orderdetail.insert_all orderdetails
+    
     redirect_to orders_complete_path
   end
 
   def complete
   end
 
+  #顧客の注文履歴一覧
   def index
-    @orders = Order.all
+    @customer = Customer.find(params[:id])
+    @orders = @customer.orders
   end
 
+  #顧客の注文履歴詳細
   def show
     @order = Order.find(params[:id])
   end
@@ -68,11 +95,11 @@ class Public::OrdersController < ApplicationController
       @destinations.push("〒" + d[0] + "　" + d[1] + "　" + d[2])
     end
   end
-  
+
   #private
 
   #def order_params
     #params.permit(:customer_id, :delivery_zip, :delivery_address, :delivery_name, :delivery_fee, :total_price, :pay_type, :order_status)
   #end
-  
+
 end

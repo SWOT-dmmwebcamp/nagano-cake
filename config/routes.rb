@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     get 'customers/my_page' => "customers#show", as: "my_page"
     get 'customers/information/edit' => "customers#edit", as: "information"
     get 'customers/unsubscribe' => "customers#unsubscribe", as: "unsubscribe"
+    patch '/customers/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+    #get 'customers' => "registrations#new"
+    resources :customers, only: [:update]
     resources :orders
     resources :deliverys, only: [:index, :edit, :update, :create, :destroy]
   end
