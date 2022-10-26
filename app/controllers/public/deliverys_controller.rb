@@ -2,7 +2,8 @@ class Public::DeliverysController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-     @destinations = Destination.all
+     @destinations = Destination.all 
+     @delivery_name = @destinations.where(customer_id: current_customer.id)
      @destination = Destination.new
   end
 
