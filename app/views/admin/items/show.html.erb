@@ -1,14 +1,14 @@
 <div class="container-md">
   <h4 class="bg-light text-center m-4", style="width:15%">商品詳細</h4>
   <div class="row justify-content-center">
-    <div class="col-md-3">
+    <div class="col-md-3 mr-5 mt-3">
       <% if @item.image.attached? %>
         <%= image_tag @item.image, size: "250x200" %>
       <% else %>
         <%= image_tag 'no_image', size: "250x200" %>
       <% end %>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6 ml-4">
       <table class="table-item m-3">
         <tr>
           <th style="width:35%">商品名</th>
