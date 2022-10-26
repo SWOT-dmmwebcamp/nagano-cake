@@ -1,6 +1,8 @@
 class Public::DeliverysController < ApplicationController
+
   def index
-     @destinations = Destination.all
+     @destinations = Destination.all 
+     @delivery_name = @destinations.where(customer_id: current_customer.id)
      @destination = Destination.new
   end
   

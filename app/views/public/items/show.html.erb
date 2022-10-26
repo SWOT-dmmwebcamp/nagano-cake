@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center my-5">
     <div class="col-md-3 m-3">
-      <% if @item.image.attaced? %>
+      <% if @item.image.attached? %>
         <%= image_tag @item.image, size: "250x200" %>
       <% else %>
         <%= image_tag 'no_image', size: "250x200" %>
