@@ -11,6 +11,8 @@
 
 <div class="" style="width: 500px;">
 <%= form_with model: @customer, url: session_path(resource_name), local: true do |f| %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <div class="field row mb-3">
    <%= f.label :メールアドレス,class: "col-sm-4 col-form-label" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-sm-8 p-0" %>

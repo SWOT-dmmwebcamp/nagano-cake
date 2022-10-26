@@ -1,26 +1,35 @@
 <div class="container">
   <div class="row justify-content-center my-5">
-    <div class="col-md-3 m-3">
-      <% if @item.image.attaced? %>
+    <div class="col-md-3 m-5">
+      <% if @item.image.attached? %>
         <%= image_tag @item.image, size: "250x200" %>
       <% else %>
         <%= image_tag 'no_image', size: "250x200" %>
       <% end %>
     </div>
-    <div class="col-md-4 my-5">
+    <div class="col-md-4 m-5">
       <h4><%= @item.item_name %></h4>
       <p><%= @item.caption %></p>
       <div class="d-flex">
         <h3>￥<%= @item.add_tax_price.to_s(:delimited) %></h3>
         <p class="mt-2"> (税込)</p>
       </div>
-      <%#個数選択ボックスとカートに入れるボタン(間違えてる可能性あり)%>
+      <%#個数選択ボックスとカートに入れるボタン(or販売停止中)%>
+      <% if @item.sales_status == true %>
       <div class="d-flex">
-        <%= form_with model: @cart_items, url:cart_items_path do |f| %>
-          <%= f.select :piece, *[1..10], { include_blank: "個数選択"} %>
+        <%= form_with model: @cart_item, url:cart_items_path do |f| %>
+          <%= f.hidden_field :id, :value => @item.id %>
+          <%= f.hidden_field :price, :value => @item.id %>
+          <%= f.select :piece, *[1..10] %>
           <%= f.submit 'カートに入れる', class:"btn btn-success m-3" %>
         <% end %>
       </div>
+      <div>
+        <small class="text-danger">一つの商品につき、カートに入れられるのは10個までです。</small>
+      </div>
+      <% else %>
+        <h5 class="text-muted">販売停止中</h5>
+      <% end %>
     </div>
   </div>
 </div>

@@ -42,4 +42,14 @@ class Public::SessionsController < Devise::SessionsController
     ## 【処理内容3】
   #end
   #end
+  protected
+
+  def reject_customer
+    @customer = Customer.find(params[:id])
+      if @customer
+        if @customer.valid_password?(params[:email][:password]) &&  (@customer.active_for_authentication? == true)
+        redirect_to new_customer_registration
+        end
+      end
+  end
 end
