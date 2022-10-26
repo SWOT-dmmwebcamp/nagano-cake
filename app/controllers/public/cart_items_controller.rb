@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
 
-  #カートに商品を
+  #カートに商品を追加する
   def create
     @count = CartItem.where(customer_id: current_customer.id).where(item_id: params[:id])
     if @count.count == 0 then #カート内に同じ商品がない場合
