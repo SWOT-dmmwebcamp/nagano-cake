@@ -3,11 +3,11 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new
     @orderdetails = Orderdetail.new
-    @cart_items = CartItem.where(customer_id: curremt_customer.id) 
+    @cart_items = CartItem.where(customer_id: current_customer.id) 
     @sum_price = 0
     @delivery_fee = 800
     @pay_type = Order.pay_types_i18n[params[:pay_type]]
-    @cust = Customer.find(curremt_customer.id) 
+    @cust = Customer.find(current_customer.id) 
     
     @zip = 
       case params[:status]
@@ -42,7 +42,7 @@ class Public::OrdersController < ApplicationController
   
   def create
     order = (1..1).map { { 
-      customer_id: curremt_customer.id, 
+      customer_id: current_customer.id, 
       delivery_zip: params[:order][:delivery_zip],
       delivery_address: params[:order][:delivery_address],
       delivery_name: params[:order][:delivery_name],
@@ -55,11 +55,11 @@ class Public::OrdersController < ApplicationController
     } }
     Order.insert_all order
     
-    order_data = Order.where(customer_id: curremt_customer.id).order(created_at: :desc).limit(1).pluck(:id)
-    count_cart_items = CartItem.where(customer_id: curremt_customer.id).count
+    order_data = Order.where(customer_id: current_customer.id).order(created_at: :desc).limit(1).pluck(:id)
+    count_cart_items = CartItem.where(customer_id: current_customer.id).count
     
     unless count_cart_items == 0 then
-      cartitems = CartItem.where(customer_id: curremt_customer.id)
+      cartitems = CartItem.where(customer_id: current_customer.id)
       cartitems.each do |i|
         orderdetails = (1..1).map { { 
           order_id: order_data[0],
@@ -73,7 +73,7 @@ class Public::OrdersController < ApplicationController
         Orderdetail.insert_all orderdetails
       end
       
-      items = CartItem.where(customer_id: curremt_customer.id) 
+      items = CartItem.where(customer_id: current_customer.id) 
       items.destroy_all
     end
     
@@ -92,10 +92,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def new
-    @cust = Customer.find(curremt_customer.id) #ログイン機能出来たらfind(current_customer.id)にする
+    @cust = Customer.find(current_customer.id) #ログイン機能出来たらfind(current_customer.id)にする
     @cust_name = @cust.last_name + " " + @cust.first_name
     @zip = @cust.zipcode[0,3] + "-" + @cust.zipcode[3,4]
-    @dest = Destination.where(customer_id: 1).pluck(:zipcode, :addresss, :delivery_name)
+    @dest = Destination.where(customer_id: current_customer.id).pluck(:zipcode, :addresss, :delivery_name)
     @destinations = []
     @dest.each do |d|
       @destinations.push("〒" + d[0] + " " + d[1] + " " + d[2])

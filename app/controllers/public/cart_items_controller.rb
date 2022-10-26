@@ -1,7 +1,7 @@
 class Public::CartItemsController < ApplicationController
   
   def index
-    @cart_items = CartItem.where(customer_id: curremt_customer.id) #ログイン機能出来たら"customer_id: current_customer.id"に変える
+    @cart_items = CartItem.where(customer_id: current_customer.id) #ログイン機能出来たら"customer_id: current_customer.id"に変える
     @cnt = [*1..10]
     @sum_price = 0
   end
@@ -21,7 +21,7 @@ class Public::CartItemsController < ApplicationController
   end
   
   def destroy_all
-    cart_items = CartItem.where(customer_id: curremt_customer.id) #ログイン機能出来たら"customer_id: current_customer.id"に変える
+    cart_items = CartItem.where(customer_id: current_customer.id) #ログイン機能出来たら"customer_id: current_customer.id"に変える
     #if cart_item.customer_id == current_customer.id
       cart_items.destroy_all
     #end
