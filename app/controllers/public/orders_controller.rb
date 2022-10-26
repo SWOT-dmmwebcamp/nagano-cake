@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
-
+  before_action :authenticate_customer!
+  
   def confirm
     @order = Order.new
     @orderdetails = Orderdetail.new
@@ -10,6 +11,7 @@ class Public::OrdersController < ApplicationController
     @cust = Customer.find(current_customer.id) 
     
     @zip = 
+
       case params[:status]
         when "tag1"
           @cust.zipcode
@@ -18,8 +20,8 @@ class Public::OrdersController < ApplicationController
         when "tag3"
           params[:zip]
       end
-    
-    @address = 
+
+    @address =
       case params[:status]
         when "tag1"
           @cust.address
@@ -28,8 +30,8 @@ class Public::OrdersController < ApplicationController
         when "tag3"
           params[:add]
       end
-    
-    @name = 
+
+    @name =
       case params[:status]
         when "tag1"
           @cust.last_name + " " + @cust.first_name
@@ -39,7 +41,7 @@ class Public::OrdersController < ApplicationController
           params[:name]
       end
   end
-  
+
   def create
     order = (1..1).map { { 
       customer_id: current_customer.id, 
@@ -83,10 +85,13 @@ class Public::OrdersController < ApplicationController
   def complete
   end
 
+  #顧客の注文履歴一覧
   def index
-    @orders = Order.all
+    @customer = Customer.find(params[:id])
+    @orders = @customer.orders
   end
 
+  #顧客の注文履歴詳細
   def show
     @order = Order.find(params[:id])
   end
@@ -101,11 +106,11 @@ class Public::OrdersController < ApplicationController
       @destinations.push("〒" + d[0] + " " + d[1] + " " + d[2])
     end
   end
-  
+
   #private
 
   #def order_params
     #params.permit(:customer_id, :delivery_zip, :delivery_address, :delivery_name, :delivery_fee, :total_price, :pay_type, :order_status)
   #end
-  
+
 end

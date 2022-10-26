@@ -1,29 +1,36 @@
 <div class="container d-flex">
-  <div class="col-2 pt-4 d-flex align-items-start"> 
+  <div class="col-2 pt-4 d-flex align-items-start">
     <div>
       <h5 class="sub-title pb-1 text-center border-bottom border-danger ">ジャンル検索</h5>
       <ul class="sub-menu d-flex flex-column">
-        <li class="border-bottom list-inline-item mb-1"><a style="color:#691c0d;"href="/">ケーキ</a></li>
-        <li class="border-bottom list-inline-item mb-1"><a style="color:#691c0d;"href="/">焼き菓子</a></li>
-        <li class="border-bottom list-inline-item mb-1"><a style="color:#691c0d;"href="/">プリン</a></li>
-        <li class="border-bottom list-inline-item mb-1"><a style="color:#691c0d;"href="/">キャンディー</a></li>
+        <li class="border-bottom list-inline-item mb-1"><a style="color:#691c0d;" href="/">ケーキ</a></li>
+        <li class="border-bottom list-inline-item mb-1"><a style="color:#691c0d;" href="/">焼き菓子</a></li>
+        <li class="border-bottom list-inline-item mb-1"><a style="color:#691c0d;" href="/">プリン</a></li>
+        <li class="border-bottom list-inline-item mb-1"><a style="color:#691c0d;" href="/">キャンディー</a></li>
       </ul>
     </div>
-
   </div>
   <div class="top-content col-9 p-3">
     <h4 class="top-text mb-2 text-center" style="color:#660000;"> ようこそ、ながのCAKEへ！！<br/> このサイトはケーキ販売のECサイトになります。<br/> 会員でない方も商品の閲覧はできますが、<br/> 購入には会員登録が必要になります。 </h4>
     <div class="sub-container pt-1 pl-5">
       <h4 class="sub-title mb-2" style="color:#402717;"><strong>-- 新着商品 --</strong></h4>
       <div class="sub-contents d-flex flex-wrap">
-        <% @items.each do |item| %>
+        <% @recent_items.each do |item| %>
           <div class="item-box mr-1">
-            <%= image_tag item.image, size: "150x130" %>
-              <div class="item-name" style="color:#402717;"> <strong><p><%= item.item_name %></p></strong></div>
-              <div class="item-praice" style="color:#402717;"> <strong><p>￥<%= item.price %></p></strong></div>
+
+            <%= link_to item_path(item) do %>
+              <% if item.image.attached? %>
+                <%= image_tag item.image, size: "150x130" %>
+                  <% else %>
+                    <%= image_tag 'no_image', size: "150x130" %>
+                      <% end %>
+                        <% end %>
+                          <div class="item-name" style="color:#402717;"> <strong><p><%= item.item_name %></p></strong></div>
+                          <div class="item-praice" style="color:#402717;"> <strong><p>￥<%= item.price %></p></strong></div>
+
           </div>
           <% end %>
-            <%= paginate @items %>
+            <%#paginate @recent_items %>
               <p class="page-introduce ml-auto"><a style="color:#691c0d;" href="/items">全ての商品を見る＞＞</a></p>
       </div>
     </div>

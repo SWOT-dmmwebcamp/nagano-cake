@@ -1,47 +1,49 @@
 <div class="container" style="margin-top: 4rem;">
-<h4 style="margin-bottom: 2rem;">マイページ</h4>
-<div class="row">
-<h5 class="col-2">登録情報
- <%= link_to information_path(@customer.id), class: "btn btn-success" do %>
+<h4 class="col-2" style="margin-bottom: 2rem; font-weight: bold;">マイページ</h4>
+<div class="row" style="margin-bottom: 1rem; height: 2rem;">
+<h5 class="col-2" style="margin-bottom: 0rem; line-height: 2rem;">登録情報</h5>
+<%= link_to information_path, class: "btn btn-success btn-sm col-1" do %>
 編集する
-  <% end %></h5>
+  <% end %>
   </div>
 <table border="1">
   <tr style="height:3rem">
-    <th style="width: 10rem;">氏名</th>
-    <td style="width: 25rem;"><%= @customer.last_name%>   <%= @customer.first_name%></td>
+    <th class="bg-light" style="width: 10rem;">氏名</th>
+    <td class="bg-white" style="width: 25rem;"><%= @customer.last_name%>   <%= @customer.first_name%></td>
   </tr>
     <tr style="height:3rem">
-    <th>カナ</th>
-    <td><%= @customer.kana_last_name%>   <%= @customer.kana_first_name%></td>
+    <th class="bg-light" >カナ</th>
+    <td class="bg-white"><%= @customer.kana_last_name%>   <%= @customer.kana_first_name%></td>
   </tr>
     <tr style="height:3rem">
-    <th>郵便番号</th>
-    <td><%= @customer.zipcode %></td>
+    <th class="bg-light" >郵便番号</th>
+    <td class="bg-white"><%= @customer.zipcode %></td>
   </tr>
     <tr style="height:3rem">
-    <th>住所</th>
-    <td><%= @customer.address %></td>
+    <th class="bg-light" >住所</th>
+    <td class="bg-white"><%= @customer.address %></td>
   </tr>
     <tr style="height:3rem">
-    <th>電話番号</th>
-    <td><%= @customer.phone_number %></td>
+    <th class="bg-light" >電話番号</th>
+    <td class="bg-white"><%= @customer.phone_number %></td>
   </tr>
     <tr style="height:3rem">
-    <th>メールアドレス</th>
-    <td><%= @customer.email %></td>
+    <th class="bg-light" >メールアドレス</th>
+    <td class="bg-white"><%= @customer.email %></td>
   </tr>
 </table>
 <div style="margin-top: 2rem;">
-<div class="row" style="margin-bottom: 1rem;">
-  <p class="col-2">配送先</p>
- <%= link_to edit_admin_customer_path(@customer.id), class: "btn btn-primary col-2" do %>
+
+<div class="row" style="margin-bottom: 1rem; height: 2rem">
+  <p class="col-2" style="margin-bottom: 0rem; line-height: 2rem;" style="">配送先</p>
+ <%= link_to deliverys_path, class: "btn btn-primary col-2" do %>
+
 一覧を見る
   <% end %>
   </div>
-  <div class="row">
-   <p class="col-2">注文履歴</p>
- <%= link_to edit_admin_customer_path(@customer.id), class: "btn btn-primary col-2" do %>
+  <div class="row" style="margin-bottom: 1rem; height: 2rem">
+   <p class="col-2" style="margin-bottom: 0rem; line-height: 2rem;">注文履歴</p>
+ <%= link_to orders_path, class: "btn btn-primary col-2" do %>
  一覧を見る
   <% end %>
   </div>
