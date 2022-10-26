@@ -100,7 +100,7 @@ class Public::OrdersController < ApplicationController
     @cust = Customer.find(current_customer.id) #ログイン機能出来たらfind(current_customer.id)にする
     @cust_name = @cust.last_name + " " + @cust.first_name
     @zip = @cust.zipcode[0,3] + "-" + @cust.zipcode[3,4]
-    @dest = Destination.where(customer_id: current_customer.id).pluck(:zipcode, :addresss, :delivery_name)
+    @dest = Destination.where(customer_id: current_customer.id).pluck(:zipcode, :address, :delivery_name)
     @destinations = []
     @dest.each do |d|
       @destinations.push("〒" + d[0] + " " + d[1] + " " + d[2])
