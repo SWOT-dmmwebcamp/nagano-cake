@@ -9,7 +9,7 @@ ja:
         pay_confirm: "入金確認"
         making: "製作中"
         send_prepare: "発送準備中"
-        send: "発送済み"
+        sent: "発送済み"
   activerecord:
     errors:
       messages:
