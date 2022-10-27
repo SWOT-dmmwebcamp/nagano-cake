@@ -1,5 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  
+
   def show
     @order = Order.find(params[:id])
     @order_details = Orderdetail.where(order_id: @order.id)
@@ -12,24 +12,24 @@ class Admin::OrdersController < ApplicationController
     @item_status = ["着手不可", "0"], ["製作待ち", "1"], ["製作中", "2"], ["製作完了", "3"]
     @sum_price = 0
   end
-  
+
   def update
     order = Order.find(params[:id])
     order.update(order_params)
-    
+
     if params[:order][:order_status] == "pay_confirm" then
       details = Orderdetail.where(order_id: params[:id])
       details.update_all(item_status: "1")
     end
-    
+
     redirect_to request.referer
   end
-  
-  
+
+
   private
-  
+
   def order_params
     params.require(:order).permit(:order_status)
   end
-  
+
 end

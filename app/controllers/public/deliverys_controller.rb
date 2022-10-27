@@ -7,7 +7,7 @@ class Public::DeliverysController < ApplicationController
      @destination = Destination.new
   end
 
- 
+
   def create
       @destination = Destination.new(destination_params)
       @destination.customer_id = current_customer.id
@@ -19,7 +19,7 @@ class Public::DeliverysController < ApplicationController
       render :index
     end
   end
-   
+
 
 
   def edit

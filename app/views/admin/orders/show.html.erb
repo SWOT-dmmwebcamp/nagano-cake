@@ -6,7 +6,7 @@
     <table class="table table-sm customer-table table-borderless">
       <tr>
         <th class="table-item">購入者</th>
-        <td><%= link_to @cust, admin_path(@order.customer_id) %></td>
+        <td><%= link_to @cust, admin_path(@order.id) %></td>
       </tr>
       <tr>
         <th class="table-item">注文日</th>
@@ -27,11 +27,11 @@
         <th class="table-item">注文ステータス</th>
         <td>
           <%= form_with model: [:admin, @order] do |f| %>
-            <%= 
-              f.select :order_status, 
+            <%=
+              f.select :order_status,
               @order_status,
               { selected: @key },
-              {class: "btn btn-outline-secondary btn-sm"} 
+              {class: "btn btn-outline-secondary btn-sm"}
             %>
             <%= f.submit '更新', class: "btn btn-success btn-sm" %>
           <% end %>
@@ -39,7 +39,7 @@
       </tr>
     </table>
   </div>
-  
+
   <div class="row mt-2 w-100">
     <div class="col-9">
       <table class="table order-table border-top border-bottom table-borderless border-black-50 w-100">
@@ -72,7 +72,7 @@
         <% end %>
       </table>
     </div>
-    
+
     <div class="col-3 d-flex align-items-end">
       <table class="table table-sm table-borderless sum-table mx-auto w-75">
         <tr>
@@ -90,7 +90,7 @@
       </table>
     </div>
   </div>
-  <div class="d-flex justify-content-start mt-3">
+  <div class="d-flex justify-content-start mt-3 mb-5">
     <%= link_to "注文履歴一覧に戻る", admin_root_path, class: "btn btn-primary btn-sm" %>
   </div>
 </div>

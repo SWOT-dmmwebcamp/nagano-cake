@@ -10,8 +10,8 @@
           <% else %>
             <%= image_tag 'no_image', size: "170x130" %><br>
           <% end %>
-            <strong class="overflow-wrap"><%= item.item_name %></strong><br>
-            <strong>￥<%= item.price.to_s(:delimited) %></strong>
+            <strong class="overflow-wrap" style="color:#402717;"><%= item.item_name %></strong><br>
+            <strong style="color:#402717;">￥<%= item.price.to_s(:delimited) %></strong>
           <% end %>
           </div>
         <% end %>
