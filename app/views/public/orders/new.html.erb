@@ -1,7 +1,7 @@
 <div class="container admin-order-show">
-  <div class="row mx-auto mt-2 w-75">
-    <div class="d-flex justify-content-start align-items-cente">
-      <h4 class="bg-light text-center my-3 px-4">注文情報入力</h4>
+  <div class="mx-auto mt-2 w-75">
+    <div class="align-items-center">
+      <h4 class="bg-light text-center my-3 px-4" style="width:18rem; margin-left:17rem;">注文情報入力</h4>
     </div>
     <div>
       <%= form_with model: @order_datail, url: orders_confirm_path, method: :post do |f| %>
