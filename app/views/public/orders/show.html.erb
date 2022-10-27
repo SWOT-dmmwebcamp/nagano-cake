@@ -17,11 +17,11 @@
         </tr>
         <tr>
           <th class="bg-light">支払方法</th>
-          <td><%= @order.pay_type %></td>
+          <td><%= @order.pay_type_i18n %></td>
         </tr>
         <tr>
           <th class="bg-light">ステータス</th>
-          <td><%= @order.order_status %></td>
+          <td><%= @order.order_status_i18n %></td>
         </tr>
       </table>
     </div>
@@ -56,9 +56,9 @@
         <% @order.orderdetails.each do |orderdetail| %>
         <tr>
           <td><%= orderdetail.item.item_name %></td>
-          <td style="width:20%"><%= orderdetail.price_at_purchase %></td>
+          <td style="width:20%"><%= orderdetail.price_at_purchase.to_s(:delimited) %></td>
           <td style="width:15%"><%= orderdetail.piece %></td>
-          <td style="width:15%"><%= orderdetail.price_at_purchase*orderdetail.piece %></td>
+          <td style="width:15%"><%= (orderdetail.price_at_purchase*orderdetail.piece).to_s(:delimited) %></td>
         </tr>
         <% end %>
       </table>
