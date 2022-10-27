@@ -1,21 +1,27 @@
 <%= render "admin/shared/links" %>
-<div class="container mt-5">
-  <div class="row">
-    <div class="mx-auto col-10 col-sm-9 col-lg-7 col-xl-5"> <strong><p class="fs-3">管理者ログイン</p></strong>
-      <%= form_with model: @admin,url: admin_session_path ,method: :post do |f| %>
-        <div class="field row mb-1">
-          <%= f.label :メールアドレス,class: "col-5" %>
-            <%= f.email_field :email, class: "col-6 form-control form-control-sm" ,placeholder: "sample@example.com"%>
-        </div>
-        <div class="field row mb-3">
-          <%= f.label :パスワード ,class: "col-5"%>
-            <%= f.password_field :password, class: "col-6 form-control form-control-sm" %>
-        </div>
-        <div class="btn-wrapper mx-auto col-4">
-          <%= f.submit "ログイン" ,class:"btn btn-sm btn-primary" %>
-        </div>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="mx-auto col-10 col-sm-9 col-lg-7 col-xl-5"> <strong><p class="fs-3">管理者ログイン</p></strong>
+        <%= form_with model: @admin,url: admin_session_path ,method: :post do |f| %>
+          <%#p class="notice">
+            <%= notice %>
+          <%#/p>
+          <p class="alert">
+            <%= alert %>
+          <%#/p >#%>
+          <div class="field row mb-1">
+            <%= f.label :メールアドレス,class: "col-5" %>
+              <%= f.email_field :email, class: "col-6 form-control form-control-sm" ,placeholder: "sample@example.com"%>
+          </div>
+          <div class="field row mb-3">
+            <%= f.label :パスワード ,class: "col-5"%>
+              <%= f.password_field :password, class: "col-6 form-control form-control-sm" %>
+          </div>
+          <div class="btn-wrapper mx-auto col-4">
+            <%= f.submit "ログイン" ,class:"btn btn-sm btn-primary" %>
+          </div>
+      </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
-</div>
-</div>
+  </div>

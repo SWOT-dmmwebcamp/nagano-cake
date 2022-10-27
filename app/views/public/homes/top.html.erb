@@ -10,27 +10,27 @@
       </ul>
     </div>
   </div>
-  <div class="top-content col-9 p-3">
-    <h4 class="top-text mb-2 text-center" style="color:#660000;"> ようこそ、ながのCAKEへ！！<br/> このサイトはケーキ販売のECサイトになります。<br/> 会員でない方も商品の閲覧はできますが、<br/> 購入には会員登録が必要になります。 </h4>
-    <div class="sub-container pt-1 pl-5">
-      <h4 class="sub-title mb-2" style="color:#402717;"><strong>-- 新着商品 --</strong></h4>
-      <div class="sub-contents d-flex flex-wrap">
+  <div class="top-container col-9">
+    <div class="top-contents pt-3">
+      <h4 class="top-text text-center" style="color:#660000;"> ようこそ、ながのCAKEへ！！<br/> このサイトはケーキ販売のECサイトになります。<br/> 会員でない方も商品の閲覧はできますが、<br/> 購入には会員登録が必要になります。 </h4>
+    </div>
+    <div class="sub-container pt-4 pl-5">
+      <h4 class="sub-title pt-1" style="color:#402717;"><strong>-- 新着商品 --</strong></h4>
+      <div class="sub-contents d-flex flex-wrap my-0 ">
         <% @recent_items.each do |item| %>
-          <div class="item-box mr-1">
-
+          <div class="col-3">
             <%= link_to item_path(item) do %>
               <% if item.image.attached? %>
-                <%= image_tag item.image, size: "150x130" %>
+                <%= image_tag item.image, size: "170x115" %>
                   <% else %>
-                    <%= image_tag 'no_image', size: "150x130" %>
-                      <% end %>
+                    <%= image_tag 'no_image', size: "170x115" %>
+                      <% end %> <strong style="color:#402717;"><p><%= item.item_name %></p></strong> <strong style="color:#402717;"><p>￥<%= item.price.to_s(:delimited) %></p></strong>
                         <% end %>
-                          <div class="item-name" style="color:#402717;"> <strong><p><%= item.item_name %></p></strong></div>
-                          <div class="item-praice" style="color:#402717;"> <strong><p>￥<%= item.price %></p></strong></div>
-
           </div>
           <% end %>
-            <%#paginate @recent_items %>
-              <p class="page-introduce ml-auto"><a style="color:#691c0d;" href="/items">全ての商品を見る＞＞</a></p>
+            <p class="page-introduce ml-auto"><a style="color:#691c0d;" href="/items">全ての商品を見る＞＞</a></p>
       </div>
     </div>
+  </div>
+</div>
+</div>

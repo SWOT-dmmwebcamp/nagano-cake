@@ -2,17 +2,18 @@
   <div class="row">
     <div class=" mx-auto col-8"> <strong><p class="fs-1 ">配送先登録/一覧</p></strong>
       <%= form_with model: @destination, url: deliverys_path, method: :post do |f| %>
-        <div class="field row mb-2">
+      <%= render 'layouts/errors', obj: @destination %>
+        <div class="field row mb-1">
           <%= f.label :郵便番号（ハイフンなし）,class: "col-4" %>
-            <%= f.text_field :zipcode ,class: "col-3 form-control",placeholder: "0000000" %>
+            <%= f.text_field :zipcode ,class: "col-3 form-control form-control-sm",placeholder: "0000000" %>
         </div>
-        <div class="field row mb-2">
+        <div class="field row mb-1">
           <%= f.label :住所,class: "col-4" %>
-            <%= f.text_field :address ,class: "col-7 form-control",placeholder: "東京都○○区"%>
+            <%= f.text_field :address ,class: "col-7 form-control form-control-sm",placeholder: "東京都○○区"%>
         </div>
         <div class="field row">
           <%= f.label :宛名,class: "col-4" %>
-            <%= f.text_field :delivery_name,class: "col-3 form-control",placeholder: "ミカサ" %>
+            <%= f.text_field :delivery_name,class: "col-3 form-control form-control-sm",placeholder: "鈴木花子" %>
               <div class="form-groupe ml-auto">
                 <%= f.submit "新規登録" ,class: "btn btn-sm btn-primary" %>
               </div>

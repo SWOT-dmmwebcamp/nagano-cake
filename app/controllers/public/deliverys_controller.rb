@@ -2,17 +2,24 @@ class Public::DeliverysController < ApplicationController
   before_action :authenticate_customer!
 
   def index
-     @destinations = Destination.all 
+     @destinations = Destination.all
      @delivery_name = @destinations.where(customer_id: current_customer.id)
      @destination = Destination.new
   end
 
-   def create
-    destination = Destination.new(destination_params)
-    destination.customer_id = current_customer.id
-    destination.save
-    redirect_to deliverys_path
-   end
+ 
+  def create
+      @destination = Destination.new(destination_params)
+      @destination.customer_id = current_customer.id
+    if @destination.save
+      redirect_to deliverys_path
+    else
+      @destinations = Destination.all
+      @delivery_name = @destinations.where(customer_id: current_customer.id)
+      render :index
+    end
+  end
+   
 
 
   def edit
@@ -20,10 +27,12 @@ class Public::DeliverysController < ApplicationController
   end
 
   def update
-    destination = Destination.find(params[:id])
-    destination.update(destination_params)
+       @destination = Destination.find(params[:id])
+    if @destination.update(destination_params)
       redirect_to deliverys_path
-
+    else
+      render :edit
+    end
   end
 
   def destroy
