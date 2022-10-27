@@ -2,6 +2,7 @@
   <h4 class="bg-light text-center m-3", style="width:15%">商品新規登録</h4>
   <div class="row justify-content-center">
     <%= form_with model: @item, url:admin_items_path do |f| %>
+    <%= render 'layouts/errors', obj: @item %>
       <div class="form-group">
         <%= f.label :商品画像 %>
         <%= f.file_field :image, accept: "image/*" %>
