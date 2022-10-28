@@ -8,6 +8,14 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def search
+    if params[:item_name].present?
+      @item_search = Item.where('item_name LIKE?', "%#{params[:item_name]}%")
+    else
+      @item_search =Item.none
+    end
+  end
+  
   private
 
   def item_params
