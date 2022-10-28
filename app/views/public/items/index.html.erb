@@ -1,0 +1,24 @@
+<div class="container">
+  <h4 class="bg-light text-center m-3", style="width:20%">商品一覧(全<%= @item.count %>件)</h4>
+  <div class="row justify-content-center">
+    <div class="col-sm-12 d-flex flex-wrap bd-highlight">
+        <% @items.each do |item| %>
+          <div class="col-sm-3 card-borderless my-3">
+          <%= link_to item_path(item) do %>
+          <% if item.image.attached? %>
+            <%= image_tag item.image, size: "170x130" %><br>
+          <% else %>
+            <%= image_tag 'no_image', size: "170x130" %><br>
+          <% end %>
+            <strong class="overflow-wrap" style="color:#402717;"><%= item.item_name %></strong><br>
+            <strong style="color:#402717;">￥<%= item.price.to_s(:delimited) %></strong>
+          <% end %>
+          </div>
+        <% end %>
+    </div>
+
+  </div>
+  <div class="row justify-content-center my-5">
+    <%= paginate @items, theme: 'twitter-bootstrap-4' %>
+  </div>
+</div>
